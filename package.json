@@ -11,7 +11,8 @@
     "test:e2e": "playwright test",
     "typecheck": "tsc --noEmit",
     "icons": "node scripts/gen-icons.mjs",
-    "deploy": "npm run build && cf deploy dist"
+    "deploy": "npm run build && cf deploy dist",
+    "poster": "node scripts/make-poster.mjs"
   },
   "dependencies": {
     "idb-keyval": "^6.2.1",

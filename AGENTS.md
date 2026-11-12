@@ -9,7 +9,7 @@ Read `TECH_SPEC.md` (stack and platform rules) and `SPEC.md` (game design) first
 - `src/units.ts`: every tuning number plus tools, pigments and stencils as data. Change balance here, not in logic.
 - `src/content/lines.json`: all player-facing text.
 - `src/ui/`: plain DOM toolbar and pause menu. `src/audio/`: one AudioContext, buses sfx / music / voice, synthesised sounds.
-- `src/boot/precache.ts` + `scripts/precache-plugin.ts` + `src/sw-template.js`: offline-first PWA (the loading screen fills the cache, not the service worker).
+- `src/boot/precache.ts` + `scripts/precache-plugin.ts` + `src/sw-template.js`: offline-first PWA (the loading screen fills the cache, not the service worker, and only when running as the installed app).
 
 ## Rules
 - Keep the sim free of rendering code and keep it deterministic. Never call `Math.random()` inside `src/sim/` except through `randomSeed()` for new seeds.

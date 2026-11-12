@@ -1,5 +1,8 @@
-// Offline-first: the loading screen (not the service worker) downloads the game into
-// Cache Storage, using dist/precache.json written at build time.
+// Offline-first: in the installed app, the loading screen (not the service worker) downloads
+// the game into Cache Storage, using dist/precache.json written at build time. In a browser
+// tab nothing is downloaded up front: the files load normally.
+
+import { isInstalled } from '../platform/platform';
 
 export const CACHE_NAME = 'cavepainting-v1';
 const META_URL = '__precache-meta__';
@@ -39,7 +42,7 @@ async function fetchRetry(url: string): Promise<Response> {
 
 /** Downloads missing or changed files. Resolves true when everything is cached. */
 export async function syncPrecache(onProgress: Progress): Promise<boolean> {
-  if (import.meta.env.DEV || !('caches' in window)) {
+  if (import.meta.env.DEV || !('caches' in window) || !isInstalled()) {
     onProgress(1, 1);
     return true;
   }

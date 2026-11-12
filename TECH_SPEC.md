@@ -8,7 +8,7 @@
 ## 2. Offline-first PWA (no Workbox)
 
 - A small Vite plugin runs after the build and writes `dist/precache.json`, a list of every file with its hash and size, then copies `src/sw-template.js` to `dist/sw.js`.
-- **The loading screen downloads the files, not the service worker.** It fetches the list, downloads only missing or changed files (6 at a time, 3 retries each) into Cache Storage, and shows a progress bar. `index.html` is downloaded last so a half-finished update can't load new HTML with old scripts. Files that are no longer in the list get deleted.
+- **The loading screen downloads the files, not the service worker, and only in the installed app** (`display-mode` standalone/fullscreen/minimal-ui, or `navigator.standalone` on iOS). In a browser tab nothing is precached. It fetches the list, downloads only missing or changed files (6 at a time, 3 retries each) into Cache Storage, and shows a progress bar. `index.html` is downloaded last so a half-finished update can't load new HTML with old scripts. Files that are no longer in the list get deleted.
 - **Service worker:** page navigations try the network for up to 4 seconds and then fall back to the cache. Everything else is served from the cache first.
 - **Manifest:** `display: fullscreen`, a fixed orientation, and icons at 192, 512, maskable 512 and the Apple touch icon (made by `gen-icons.mjs` from a character image).
 - **iOS meta tags:** `apple-mobile-web-app-capable` and `black-translucent` status bar.

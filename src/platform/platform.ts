@@ -3,6 +3,15 @@
 export const isIOS =
   /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
+/** Running as the installed app (Home Screen / desktop install), not in a browser tab. */
+export function isInstalled(): boolean {
+  const nav = navigator as Navigator & { standalone?: boolean };
+  return (
+    nav.standalone === true ||
+    ['fullscreen', 'standalone', 'minimal-ui'].some((m) => matchMedia(`(display-mode: ${m})`).matches)
+  );
+}
+
 /** No double-tap zoom, long-press menus or pinch gestures. */
 export function lockGestures(): void {
   const block = (e: Event) => e.preventDefault();

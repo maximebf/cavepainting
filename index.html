@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Grotte" />
+    <meta name="theme-color" content="#0b0806" />
+    <meta name="description" content="Peignez sur une paroi de grotte éclairée à la torche, avec de l'ocre, du charbon et un pochoir au souffle." />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" type="image/png" href="icons/icon-192.png" />
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+    <title>Peinture rupestre</title>
+  </head>
+  <body>
+    <div id="app">
+      <aside id="toolbar" aria-label="Outils"></aside>
+      <main id="game"></main>
+    </div>
+    <div id="menu" class="overlay hidden" role="dialog" aria-modal="true"></div>
+    <div id="loader" class="overlay">
+      <div class="loader-card">
+        <h1 id="title"></h1>
+        <p id="tagline"></p>
+        <div class="bar"><div id="bar-fill"></div></div>
+        <p id="load-status"></p>
+        <button id="play" class="stone-btn big" disabled></button>
+      </div>
+    </div>
+    <div id="rotate" class="overlay"><p></p></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

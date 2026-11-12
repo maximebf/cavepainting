@@ -1,0 +1,67 @@
+{
+  "title": "Peinture rupestre",
+  "tagline": "Une torche, une paroi et les couleurs de la terre.",
+  "loading": "On rassemble les pigments…",
+  "loadingFailed": "Certains fichiers n'ont pas pu être téléchargés. La grotte fonctionne tant que vous êtes en ligne.",
+  "ready": "Entrer dans la grotte",
+  "rotate": "Tournez votre appareil à l'horizontale pour peindre.",
+  "hintTorch": "Faites glisser la torche pour éclairer une autre partie de la paroi.",
+  "hintStencil": "Appuyez longuement sur la paroi pour souffler le pigment autour de l'objet. Plus vous tenez, plus la trace est marquée.",
+  "hintTracing": "Suivez les traits du calque avec vos outils. Faites glisser l'épingle pour le déplacer.",
+  "sections": {
+    "tools": "Dans la main",
+    "stencils": "Pochoir au souffle",
+    "tracing": "Papier calque",
+    "pigments": "Pigments",
+    "size": "Taille"
+  },
+  "tools": {
+    "finger": { "name": "Doigt", "info": "Le bout du doigt trempé dans la pâte de pigment. Doux et large, il s'assèche en peignant." },
+    "lump": { "name": "Bloc de pigment", "info": "Un bloc d'ocre ou un bâton charbonneux, utilisé comme une craie. Trait granuleux." },
+    "brush": { "name": "Pinceau en poils", "info": "Des poils d'animal liés à un bâton. Longs traits striés." },
+    "twig": { "name": "Brindille mâchée", "info": "Une brindille mâchée jusqu'aux fibres. Contours fins et détails." }
+  },
+  "stencils": {
+    "hand": { "name": "Main", "info": "Posez la main sur la roche et soufflez le pigment autour." },
+    "leaf": { "name": "Feuille", "info": "Une feuille tenue à plat contre la paroi." },
+    "shell": { "name": "Coquillage", "info": "Une coquille Saint-Jacques, rapportée de loin depuis la mer." }
+  },
+  "animals": {
+    "mammoth": "Mammouth",
+    "tiger": "Tigre",
+    "bison": "Bison",
+    "horse": "Cheval"
+  },
+  "pigments": {
+    "redOchre": "Ocre rouge (hématite)",
+    "burntOchre": "Ocre brûlée (goethite chauffée)",
+    "yellowOchre": "Ocre jaune (goethite)",
+    "umber": "Terre d'ombre",
+    "manganese": "Noir de manganèse",
+    "charcoal": "Charbon de bois",
+    "kaolin": "Argile blanche (kaolin)"
+  },
+  "actions": {
+    "undo": "Annuler",
+    "redo": "Rétablir",
+    "menu": "Menu",
+    "rotate": "Tourner d'un quart de tour",
+    "tracingOff": "Retirer le calque"
+  },
+  "menu": {
+    "title": "Repos près du feu",
+    "resume": "Retour à la paroi",
+    "sfx": "Sons",
+    "music": "Ambiance de la grotte",
+    "leftHanded": "Gaucher",
+    "reducedMotion": "Flamme apaisée",
+    "savePicture": "Enregistrer une image",
+    "freshWall": "Trouver une paroi vierge",
+    "freshWallConfirm": "Touchez encore : cette peinture sera perdue",
+    "exportSave": "Exporter la peinture",
+    "importSave": "Importer une peinture",
+    "importFailed": "Ce fichier n'est pas une peinture rupestre.",
+    "imported": "Peinture restaurée.",
+    "credits": "Pigments, outils et pochoirs inspirés de l'art pariétal du Paléolithique supérieur (Chauvet, Lascaux, Cueva de las Manos)."
+  }
+}

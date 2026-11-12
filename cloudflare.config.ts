@@ -10,6 +10,6 @@ export default defineConfig({
     assets: {
       notFoundHandling: 'single-page-application',
     },
-    // Add your custom domain here, e.g. domains: ['cave.example.com'],
+    domains: ['cavepainting.play.maximebf.com'],
   },
 });

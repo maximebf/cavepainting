@@ -139,6 +139,17 @@ async function boot(): Promise<void> {
     render: { antialias: true, powerPreference: 'high-performance' },
     scene: [scene],
   });
+  // The wall always fills the height of the play area: on a screen narrower than the
+  // wall, crop its sides (ENVELOP) instead of letterboxing above and below (FIT).
+  const scaleMgr = game.scale;
+  const updateScale = scaleMgr.updateScale.bind(scaleMgr);
+  scaleMgr.updateScale = () => {
+    const { width, height } = scaleMgr.parentSize;
+    const mode = width / height < WALL_W / WALL_H ? Phaser.Scale.ENVELOP : Phaser.Scale.FIT;
+    scaleMgr.scaleMode = mode;
+    scaleMgr.displaySize.setAspectMode(mode);
+    updateScale();
+  };
   hud.setHistory(sim.history.canUndo(), false);
   if (q.has('debug')) Object.assign(window, { cave: { game, sim, selection, settings } });
 

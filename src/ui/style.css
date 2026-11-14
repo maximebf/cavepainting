@@ -62,6 +62,7 @@ body.left-handed #app {
   flex: 1;
   min-width: 0;
   height: 100%;
+  overflow: hidden;
   touch-action: none;
   background: radial-gradient(ellipse at 85% 85%, #1a0f08 0%, #050302 70%);
 }

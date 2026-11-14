@@ -199,7 +199,7 @@ export const TORCH = {
   height: 260,
   /** Distance (px) at which light falls to half. */
   radius: 760,
-  intensity: 1.55,
+  intensity: 1.8,
   /** Flicker amount per tick (random walk) and its limits. */
   flickerStep: 0.09,
   flickerMin: 0.78,
@@ -217,9 +217,9 @@ export const TORCH = {
 };
 
 export const LIGHT = {
-  ambient: [0.05, 0.043, 0.04] as const,
+  ambient: [0.13, 0.112, 0.1] as const,
   torchColor: [1.0, 0.64, 0.33] as const,
-  exposure: 1.35,
+  exposure: 1.6,
   bump: 0.78,
 };
 

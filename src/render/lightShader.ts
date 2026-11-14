@@ -74,7 +74,7 @@ void main() {
 
   // Smoky vignette.
   vec2 c = uv - 0.5;
-  col *= 1.0 - 0.45 * smoothstep(0.35, 0.85, length(c * vec2(1.1, 1.3)));
+  col *= 1.0 - 0.3 * smoothstep(0.35, 0.85, length(c * vec2(1.1, 1.3)));
   // Film grain to avoid banding in the dark.
   col += (hash(px + fract(time)) - 0.5) * 0.012;
 

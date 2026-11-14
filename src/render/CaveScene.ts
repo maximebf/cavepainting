@@ -39,6 +39,8 @@ const PIGMENT_COLOR = new Map<PigmentId, number>(PIGMENTS.map((p) => [p.id, p.co
 const CLAMP = { wrapS: 'clamp_to_edge', wrapT: 'clamp_to_edge' };
 const TORCH_TILT = -0.38;
 const TORCH_HOME_X = WALL_W * TORCH.homeX;
+/** Gap kept between the torch's home and the right edge of the visible wall. */
+const TORCH_HOME_INSET = WALL_W - TORCH_HOME_X;
 const TORCH_HOME_Y = WALL_H * TORCH.homeY;
 
 interface QueuedDabs {
@@ -117,6 +119,16 @@ export class CaveScene extends Phaser.Scene {
     this.held = this.add.image(0, 0, objectKey('hand')).setVisible(false);
 
     this.createTorch();
+    // Keep the resting torch on screen when the visible part of the wall changes.
+    const placeTorch = () => {
+      if (this.drag?.kind === 'torch') return;
+      this.torchTween?.stop();
+      this.torchTween = null;
+      this.torch.x = this.torchHomeX();
+      this.torch.y = TORCH_HOME_Y;
+    };
+    placeTorch();
+    this.scale.on(Phaser.Scale.Events.RESIZE, placeTorch);
     this.bindInput();
     this.replayAll();
   }
@@ -223,11 +235,22 @@ export class CaveScene extends Phaser.Scene {
     return Math.hypot(x - t.x - vx * h, y - t.y - vy * h) < 42;
   }
 
+  /** Horizontal range of the wall actually on screen (the sides are cropped on narrow screens). */
+  private visibleX(): { x0: number; x1: number } {
+    const shown = this.scale.displaySize.width;
+    const vw = shown > 0 ? Math.min(WALL_W, (WALL_W * this.scale.parentSize.width) / shown) : WALL_W;
+    return { x0: (WALL_W - vw) / 2, x1: (WALL_W + vw) / 2 };
+  }
+
+  private torchHomeX(): number {
+    return this.visibleX().x1 - TORCH_HOME_INSET;
+  }
+
   private sendTorchHome(): void {
     this.torchTween?.stop();
     this.torchTween = this.tweens.add({
       targets: this.torch,
-      x: TORCH_HOME_X,
+      x: this.torchHomeX(),
       y: TORCH_HOME_Y,
       duration: TORCH.returnSeconds * 1000,
       ease: 'Back.easeOut',
@@ -385,7 +408,8 @@ export class CaveScene extends Phaser.Scene {
       const d = this.drag;
       if (!d || d.id !== e.pointerId) return;
       if (d.kind === 'torch') {
-        this.torch.x = Phaser.Math.Clamp(p.x + d.dx, 30, WALL_W - 30);
+        const { x0, x1 } = this.visibleX();
+        this.torch.x = Phaser.Math.Clamp(p.x + d.dx, x0 + 30, x1 - 30);
         this.torch.y = Phaser.Math.Clamp(p.y + d.dy, 40, WALL_H - 20);
       } else if (d.kind === 'paper') {
         this.paper.x = Phaser.Math.Clamp(p.x + d.dx, 0, WALL_W);
